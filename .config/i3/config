@@ -177,7 +177,7 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
+# bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 
 # Lock the system
 # lock with a picture:
@@ -186,7 +186,7 @@ bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
@@ -200,6 +200,10 @@ bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 # Backlight control
 bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+
+# Use Shift+Audio keys to change brightness
+bindsym Shift+XF86AudioRaiseVolume exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym Shift+XF86AudioLowerVolume exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # change focus
 bindsym $mod+j focus left
@@ -235,9 +239,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+g layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+Shift+g layout tabbed
+bindsym $mod+Shift+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -273,29 +277,40 @@ bindsym XF86AudioPrev exec playerctl previous
 # Redirect sound to headphones
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
-## App shortcuts
+## Apps shortcuts
 bindsym $mod+w exec /usr/bin/brave
-bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+c exec /usr/bin/code
+bindsym $mod+s exec /usr/bin/slack
+bindsym $mod+z exec /usr/bin/zoom
+bindsym $mod+m exec /usr/bin/spotify
+bindsym $mod+shift+t exec /usr/bin/qbittorrent
 bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
+# Folders shortcuts
+bindsym $mod+Shift+d exec thunar Downloads
+bindsym $mod+Ctrl+Shift+d exec thunar Documents
+bindsym $mod+Shift+c exec thunar Code
+bindsym $mod+Shift+v exec thunar Videos
+bindsym $mod+Shift+p exec thunar Pictures
+bindsym $mod+Shift+m exec thunar Music
+
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+# bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+# Workspace names and icons
+set $ws1 "1 1 "
+set $ws2 "2 2 "
+set $ws3 "3 3 "
+set $ws4 "4 4 "
+set $ws5 "5 5 "
+set $ws6 "6 6 "
+set $ws7 "7 7 "
+set $ws8 "8 8 "
+set $ws9 "9 9 "
 set $ws10 "10"
 
 # use workspaces on different displays:
@@ -309,15 +324,25 @@ set $ws10 "10"
 
 # bind program to workspace and focus to them on startup:
 assign [class="Xfce4-terminal"] $ws1
-assign [class="brave-browser"] $ws2
+assign [class="Brave-browser"] $ws2
 assign [class="Thunar"] $ws3
+assign [class="Code"] $ws4
+assign [class="Slack"] $ws5
+assign [class="zoom"] $ws6
+assign [class="mpv"] $ws7
+for_window [class="Spotify"] move to workspace $ws8
+assign [class="qBittorrent"] $ws9
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Xfce4-terminal] focus
-for_window [class=(?i)firefox] focus
+for_window [class=Brave-browser] focus
 for_window [class=Thunar] focus
-for_window [class=Thunderbird] focus
-for_window [class=TelegramDesktop] focus
+for_window [class=Code] focus
+for_window [class=Slack] focus
+for_window [class=zoom] focus
+for_window [class=mpv] focus
+for_window [class=Spotify] focus
+for_window [class=qBittorrent] focus
 
 ##############
 # compositor #
