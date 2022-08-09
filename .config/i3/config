@@ -203,12 +203,12 @@ bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 # bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
 # Backlight control
-bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +20 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -20 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # Use Shift+Audio keys to change brightness
-bindsym Shift+XF86AudioRaiseVolume exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
-bindsym Shift+XF86AudioLowerVolume exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id xbacklight +20 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id xbacklight -20 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # change focus
 bindsym $mod+j focus left
@@ -287,21 +287,21 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 ##################################
 
 # Apps
-bindsym $mod+w exec  --no-startup-id /usr/bin/brave
-bindsym $mod+c exec  --no-startup-id /usr/bin/code
-bindsym $mod+s exec  --no-startup-id /usr/bin/slack
-bindsym $mod+z exec  --no-startup-id /usr/bin/zoom
-bindsym $mod+m exec  --no-startup-id /usr/bin/spotify
-bindsym $mod+shift+t exec  --no-startup-id /usr/bin/qbittorrent
+bindsym $mod+w exec --no-startup-id /usr/bin/brave
+bindsym $mod+c exec --no-startup-id /usr/bin/code
+bindsym $mod+s exec --no-startup-id /usr/bin/slack
+bindsym $mod+z exec --no-startup-id /usr/bin/zoom
+bindsym $mod+m exec --no-startup-id /usr/bin/spotify
+bindsym $mod+shift+t exec --no-startup-id /usr/bin/qbittorrent
 bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 # Folders
-bindsym $mod+Shift+d exec  --no-startup-id thunar Downloads
-bindsym $mod+Ctrl+Shift+d exec  --no-startup-id thunar Documents
-bindsym $mod+Shift+c exec  --no-startup-id thunar Code
-bindsym $mod+Shift+v exec  --no-startup-id thunar Videos
-bindsym $mod+Shift+p exec  --no-startup-id thunar Pictures
-bindsym $mod+Shift+m exec  --no-startup-id thunar Music
+bindsym $mod+Shift+d exec --no-startup-id thunar Downloads
+bindsym $mod+Ctrl+Shift+d exec --no-startup-id thunar Documents
+bindsym $mod+Shift+c exec --no-startup-id thunar Code
+bindsym $mod+Shift+v exec --no-startup-id thunar Videos
+bindsym $mod+Shift+p exec --no-startup-id thunar Pictures
+bindsym $mod+Shift+m exec --no-startup-id thunar Music
 
 # System
 bindsym $mod+Ctrl+Shift+F9 exec i3-msg exit
