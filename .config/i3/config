@@ -22,6 +22,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango: MesloLGS NF Regular 10
 font pango: Noto Sans Regular 10
 
 # set the mod key to the winkey:
@@ -293,7 +294,9 @@ bindsym $mod+s exec --no-startup-id /usr/bin/slack
 bindsym $mod+z exec --no-startup-id /usr/bin/zoom
 bindsym $mod+m exec --no-startup-id /usr/bin/spotify
 bindsym $mod+shift+t exec --no-startup-id /usr/bin/qbittorrent
-bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+#bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym Print exec --no-startup-id /usr/bin/xfce4-screenshooter
+
 
 # Folders
 bindsym $mod+Shift+d exec --no-startup-id thunar Downloads
@@ -386,7 +389,7 @@ for_window [class=qBittorrent] focus
 #exec_always --no-startup-id picom -b
 #
 # for custom config:
-#exec_always --no-startup-id picom --config  ~/.config/picom.conf
+exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 
 #############################################
 # autostart applications/services on login: #
@@ -485,6 +488,9 @@ for_window [class="zoom"] floating enable
 for_window [class="zoom" title="Zoom Meeting"] floating disabled
 for_window [class="zoom" title="Chat"] floating disabled
 
+#XDM floating config
+for_window [class="xdman-Main"] floating enable
+for_window [class="xdman-Main" title="XDM 2020"] floating disabled
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
