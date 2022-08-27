@@ -1,32 +1,10 @@
-### Apps that will be installed
+### I3wm EndeavourOS Dotfiles
 
-```
-yay -S visual-studio-code-bin nvm slack-desktop zoom vlc redshift-gtk autorandr brave-bin discord spotify qbittorrent-qt5 ttf-fira-code ttf-meslo-nerd-font-powerlevel10k qt5ct qt5-stylepuglins blueman xdman 
-```
+## Use scripts to install everything
 
-- VSCode
-- Brave
-- NVM
-- Slack
-- Zoom
-- Discord
-- Spotify
-- VLC
-- Redshift-GTK
-- Autorandr
-- qBittorrent
-- Fonts
-    - Fira Code
-    - Nerd Font Powerlevel10k
-- Qt5
-- Blueman
-- Xtreme Download Manager
+# How to change LightDM background
+https://wiki.archlinux.org/title/LightDM#Changing_background_images/colors
 
-### Fix Qt5 themes
-
-```
-sudo nano /etc/environment
-
-Uncomment
-QT_QPA_PLATFORMTHEME=qt5ct
-```
+# Add password feedback in terminal
+cd /etc/ && cp sudoers sudoers.bak && EDITOR=nano visudo
+env_reset,pwfeedback

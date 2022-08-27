@@ -14,3 +14,4 @@ yay -S transmission-gtk
 yay -S ttf-fira-code
 yay -S ttf-meslo-nerd-font-powerlevel10k
 yay -S xdman
+yay -S flameshot
