@@ -41,6 +41,8 @@ echo "### INSTALLING NVM AND NODEJS ###"
 echo "#################################"
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+export NVM_DIR=$HOME/.nvm;
+source $NVM_DIR/nvm.sh;
 nvm i 16
 
 echo "###############################"
@@ -63,4 +65,4 @@ echo "###########################"
 
 cp -r .config/mpv ~/
 cp .config/i3/config ~/.config/i3
-sudo cp -r backgrounds ~/usr/share/endeavouros/
+sudo cp -r backgrounds /usr/share/endeavouros/
