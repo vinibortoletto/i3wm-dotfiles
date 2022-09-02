@@ -259,7 +259,7 @@ for_window [class=Transmission-gtk] focus
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
 #
 # using default config 
-#exec_always --no-startup-id picom -b
+# exec_always --no-startup-id picom -b
 #
 # for custom config:
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
