@@ -40,4 +40,5 @@ case $WEATHER_CONDITION in
     ;;
 esac
 
-echo "${WEATHER_ICON} ${WEATHER_TEMP}°C - 煮 ${WIND_SPEED}km/h"
+# echo "${WEATHER_ICON} ${WEATHER_TEMP}°C    煮 ${WIND_SPEED}km/h"
+echo "${WEATHER_ICON} ${WEATHER_TEMP}°C"
