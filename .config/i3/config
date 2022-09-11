@@ -173,6 +173,7 @@ bindsym $mod+c exec --no-startup-id /usr/bin/code
 bindsym $mod+s exec --no-startup-id /usr/bin/slack
 bindsym $mod+z exec --no-startup-id /usr/bin/zoom
 bindsym $mod+shift+t exec --no-startup-id /usr/bin/transmission-gtk
+bindsym Print exec --no-startup-id scrot ~/Pictures/%d-%m-%Y-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 
 # Folders
 bindsym $mod+Shift+d exec --no-startup-id thunar Downloads
@@ -269,7 +270,6 @@ exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 # flameshot
 exec --no-startup-id /usr/bin/flameshot
 
-
 #get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -305,7 +305,7 @@ exec --no-startup-id sleep 2 && nitrogen --restore
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 # set powersavings for display:
-exec --no-startup-id xset s 480 dpms 600 600 600
+# exec --no-startup-id xset s 480 dpms 600 600 600
 
 # disable power saving (for example if using xscreensaver)
 #exec --no-startup-id xset -dpms
