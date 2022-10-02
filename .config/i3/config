@@ -287,7 +287,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dex --autostart --environment i3
 
 # start redshift
-exec --no-startup-id redshift-gtk -t 6500:2500
+# exec --no-startup-id redshift-gtk -t -22.724980:-47.647600
+exec --no-startup-id redshift -P -O 3000
 
 # start welcome app
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
