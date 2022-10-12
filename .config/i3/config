@@ -11,7 +11,6 @@ set $mod Mod4
 # default i3 tiling mode:
 workspace_layout default
 
-
 # move focused workspace between monitors
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
@@ -32,9 +31,66 @@ for_window [class="^.*"] border pixel 3
 gaps inner 6
 gaps outer 3
 
+# colors variables
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white		#d3dae3
+set $black		#000000
+set $purple		#517372
+set $darkpurple		#3c4d4d
+set $darkgrey		#383c4a
+set $grey		#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows
+#class												border				bground				text			indicator				child_border
+client.focused								$purple				$purple				$white		$purple					$purple
+client.unfocused							$purple				$darkpurple		$grey			$darkgrey				$darkgrey
+client.focused_inactive				$purple				$darkpurple		$grey			$darkpurple					$darkpurple
+client.urgent									$urgentred		$urgentred		$white		$yellowbrown		$yellowbrown
+
+# Start i3bar to display a workspace bar
+bar {
+	font pango: Noto Sans Regular 10
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position bottom
+	tray_output primary
+	tray_padding 4
+
+colors {
+	separator     $purple
+	background    $darkgrey
+	statusline    $white
+# 										border				bg						txt						indicator
+	focused_workspace		$mediumgrey		$grey					$darkgrey			$purple
+	active_workspace		$lightblue  	$mediumgrey		$darkgrey			$purple
+	inactive_workspace	$darkgrey   	$darkgrey			$grey					$purple
+	urgent_workspace		$urgentred		$urgentred		$white				$purple
+	}
+}
+
 #################
 ### SHORTCUTS ###
 #################
+
+# apps
+bindsym $mod+w exec --no-startup-id /usr/bin/brave
+bindsym $mod+c exec --no-startup-id /usr/bin/code
+bindsym $mod+s exec --no-startup-id /usr/bin/slack
+bindsym $mod+z exec --no-startup-id /usr/bin/zoom
+bindsym $mod+shift+t exec --no-startup-id /usr/bin/transmission-gtk
+bindsym Print exec --no-startup-id scrot ~/Pictures/%d-%m-%Y-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
+# folders
+bindsym $mod+Shift+d exec --no-startup-id thunar Downloads
+bindsym $mod+Ctrl+Shift+d exec --no-startup-id thunar Documents
+bindsym $mod+Shift+c exec --no-startup-id thunar Code
+bindsym $mod+Shift+v exec --no-startup-id thunar Videos
+bindsym $mod+Shift+p exec --no-startup-id thunar Pictures
+bindsym $mod+Shift+m exec --no-startup-id thunar Music
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -88,40 +144,24 @@ bindsym $mod+Shift+r restart
 # backlight control
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +20
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -20
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight +5
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -5
 
 # use shift+audio keys to change brightness
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id xbacklight +20
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id xbacklight -20
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+b focus up
-bindsym $mod+o focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+b move up
-bindsym $mod+Shift+o move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -137,21 +177,9 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
-
-# open new empty workspace
-bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
-
-# Multimedia Keys
-
 # volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
-
-# gradular volume control
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
 
 # mute
 bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
@@ -161,38 +189,6 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-# Redirect sound to headphones
-# bindsym $mod+p exec /usr/local/bin/switch-audio-port
-
-##################################
-########### SHORTCUTS ############
-##################################
-
-# Apps
-bindsym $mod+w exec --no-startup-id /usr/bin/brave
-bindsym $mod+c exec --no-startup-id /usr/bin/code
-bindsym $mod+s exec --no-startup-id /usr/bin/slack
-bindsym $mod+z exec --no-startup-id /usr/bin/zoom
-bindsym $mod+shift+t exec --no-startup-id /usr/bin/transmission-gtk
-bindsym Print exec --no-startup-id scrot ~/Pictures/%d-%m-%Y-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
-
-# Folders
-bindsym $mod+Shift+d exec --no-startup-id thunar Downloads
-bindsym $mod+Ctrl+Shift+d exec --no-startup-id thunar Documents
-bindsym $mod+Shift+c exec --no-startup-id thunar Code
-bindsym $mod+Shift+v exec --no-startup-id thunar Videos
-bindsym $mod+Shift+p exec --no-startup-id thunar Pictures
-bindsym $mod+Shift+m exec --no-startup-id thunar Music
-
-# System
-bindsym $mod+Ctrl+Shift+F9 exec i3-msg exit
-bindsym $mod+Ctrl+Shift+F10 exec poweroff
-bindsym $mod+Ctrl+Shift+F11 exec reboot
-bindsym $mod+Ctrl+Shift+F12 exec systemctl suspend
-
-# Power Profiles menu switcher (rofi)
-# bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -210,110 +206,45 @@ set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10"
 
-# use workspaces on different displays:
-# where you have to replace VGA-0/HDMI-0 with the names for your displays
-# you can get from xrandr command
-#workspace $ws1 output VGA-0
-#workspace $ws2 output VGA-0
-#workspace $ws3 output HDMI-0
-#workspace $ws4 output HDMI-0
-#workspace $ws5 output HDMI-0
-
 # bind program to workspace and focus to them on startup:
 assign [class="Xfce4-terminal"] $ws1
 assign [class="Brave-browser"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Code"] $ws4
-assign [class="Slack"] $ws5
-assign [class="zoom"] $ws6
-assign [class="Transmission-gtk"] $ws7
+assign [class="Transmission-gtk"] $ws5
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Xfce4-terminal] focus
 for_window [class=Brave-browser] focus
 for_window [class=Thunar] focus
 for_window [class=Code] focus
-for_window [class=Slack] focus
-for_window [class=zoom] focus
 for_window [class=Transmission-gtk] focus
 
-##############
-# compositor #
-##############
-
-# transparency
-# uncomment one of them to be used (picom package is installed per default)
-# options could need changes, related to used GPU and drivers.
-# to find the right setting consult the archwiki or ask at the forum.
-#
-# xcompmgr: https://wiki.archlinux.org/title/Xcompmgr
-# manpage: https://man.archlinux.org/man/xcompmgr.1.en
-#exec --no-startup-id xcompmgr -C -n &
-# or an more specialized config like this:
-#exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-#
-# or:
-#
-# picom: https://wiki.archlinux.org/title/Picom
-# manpage: https://man.archlinux.org/man/picom.1.en
-# The default configuration is available in /etc/xdg/picom.conf 
-# For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
-#
-# using default config 
-# exec_always --no-startup-id picom -b
-#
-# for custom config:
+# picom
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 
-#############################################
-# autostart applications/services on login: #
-#############################################
+#################
+### AUTOSTART ###
+#################
 
 # flameshot
 exec --no-startup-id /usr/bin/flameshot
 
-# xfce4 power manager
-exec --no-startup-id /usr/bin/xfce4-power-manager
-
-#get auth work with polkit-gnome
+# get auth work with polkit-gnome
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # dex execute .desktop files + apps using /etc/xdg/autostart.
-# when second to i3 a DE is installed or mixed usage of i3 + xfce4 or GNOME
-# in this cases better disable dex and use manual starting apps using xdg/autostart
-# if enabled you should comment welcome app.
-# https://github.com/jceb/dex
-#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
 
 # start redshift
 exec --no-startup-id redshift -P -O 3000
 
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-# exec --no-startup-id ~/.screenlayout/monitor.sh
-
 # set wallpaper
-exec --no-startup-id sleep 2 && feh --bg-fill --no-xinerama /Pictures/backgrounds/pexels-lucas-pezeta-2270180.jpg
+exec --no-startup-id sleep 3 && feh --bg-fill --no-xinerama /Pictures/backgrounds/pexels-lucas-pezeta-2270180.jpg
 
-###############
-# system tray #
-###############
-# if you do not use dex: exec --no-startup-id dex --autostart --environment i3
-# you need to have tray apps started manually one by one:
-
-# start blueberry app for managing bluetooth devices from tray:
-#exec --no-startup-id blueberry-tray
-
-# networkmanager-applet
-#exec --no-startup-id nm-applet
-
-# clipman-applet
-#exec --no-startup-id xfce4-clipman
-
-##################
-# floating rules #
-##################
+######################
+### FLOATING RULES ###
+######################
 
 # set floating (nontiling) for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
@@ -322,8 +253,6 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
 # Zoom floating config
 for_window [class="zoom"] floating enable
-# for_window [class="zoom" title="Zoom Meeting"] floating disabled
-# for_window [class="zoom" title="Chat"] floating disabled
 
 #XDM floating config
 for_window [class="xdman-Main"] floating enable
@@ -340,70 +269,6 @@ for_window [window_role="About"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
-
-# set size of floating window
-#for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
-#for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
-
-# set position of floating window
-#for_window [class=".*"] move position center
-
-######################################
-# color settings for bar and windows #
-######################################
-
-# Define colors variables:
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#d3dae3
-set $black		#000000
-set $purple		#4C566A
-set $darkpurple		#2E3440
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
-
-# define colors for windows:
-#class												border				bground				text			indicator				child_border
-client.focused								$purple				$purple				$white		$purple					$purple
-client.unfocused							$purple				$darkpurple		$grey			$darkgrey				$darkgrey
-client.focused_inactive				$purple				$darkpurple		$grey			$darkpurple					$darkpurple
-client.urgent									$urgentred		$urgentred		$white		$yellowbrown		$yellowbrown
-
-############################################
-# bar settings (input comes from i3blocks) #
-############################################
-
-# Start i3bar to display a workspace bar
-# (plus the system information i3status finds out, if available)
-bar {
-	font pango: Noto Sans Regular 10
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position bottom
-	#	i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-	tray_output primary
-	tray_padding 4
-
-
-# show workspace number
-strip_workspace_numbers no
-
-colors {
-	separator     $purple
-	background    $darkgrey
-	statusline    $white
-# 										border				bg						txt						indicator
-	focused_workspace		$mediumgrey		$grey					$darkgrey			$purple
-	active_workspace		$lightblue  	$mediumgrey		$darkgrey			$purple
-	inactive_workspace	$darkgrey   	$darkgrey			$grey					$purple
-	urgent_workspace		$urgentred		$urgentred		$white				$purple
-	}
-}
 
 ##########################
 ### ROFI CONFIGURATION ###
