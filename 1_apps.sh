@@ -10,7 +10,7 @@ yay -S zoom
 echo_done
 
 echo_doing 'Installing Redshift'
-yay -S redshift
+yay -S redshift-gtk-git
 echo_done
 
 echo_doing 'Installing Autorandr'
