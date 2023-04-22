@@ -13,3 +13,6 @@ echo_doing 'Copying backgrounds folders'
 cp -r backgrounds ~/Pictures
 echo_done
 
+echo_doing 'Copying bluetooth settings'
+cp policy-bluetooth ~/home/vini/.local/state/wireplumber/policy-bluetooth
+echo_done
