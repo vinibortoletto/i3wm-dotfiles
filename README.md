@@ -59,3 +59,6 @@ autorandr --save mobile
 ```
 autorandr --save docked
 ```
+
+# Configure autologin
+https://wiki.archlinux.org/title/LightDM#Enabling_autologin
