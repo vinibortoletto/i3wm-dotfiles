@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
+source ./.functions.sh
 
-echo "###########################"
-echo "### GIT CONFIGURATION ###"
-echo "###########################"
+echo_doing 'Setting git global email and name'
 
 git config --global user.email "ovinibortoletto@gmail.com"
 git config --global user.name "Vinicius Bortoletto"
 
-ssh-keygen -t ed25519 -C "ovinibortoletto@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-cat ~/.ssh/id_ed25519.pub
-
+echo_done

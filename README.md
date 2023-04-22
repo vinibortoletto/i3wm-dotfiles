@@ -33,3 +33,29 @@ Section "InputClass"
         Option "NaturalScrolling" "True"
 EndSection
 ```
+
+# Fix BIOS access
+Find the entry ending with (systemd...64)
+
+```
+sudo efibootmge -b XXXX -B
+```
+
+# Enable password feedback in terminal
+```
+cd /etc/ 
+sudo -s
+EDITOR=nano visudo
+
+// Update line
+Defaults env_reset,pwfeedback
+```
+
+# Configure Autorandr
+```
+autorandr --save mobile
+```
+
+```
+autorandr --save docked
+```

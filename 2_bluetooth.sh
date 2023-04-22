@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
+source ./.functions.sh
 
-echo "###############################"
-echo "### BLUETOOTH CONFIGURATION ###"
-echo "###############################"
+echo_doing 'Configuring bluetooth'
 
 yay -S blueman
 sudo systemctl enable bluetooth
+
+echo_done
+
+reboot

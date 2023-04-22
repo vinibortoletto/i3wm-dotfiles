@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+source ./.functions.sh
 
-echo "#############################"
-echo "### FIXING COLORED EMOJIS ###"
-echo "##############################"
+echo_doing 'Fixing emojis'
 
 yay -S ttf-twemoji
 mkdir ~/.config/fontconfig
 cp fonts.conf ~/.config/fontconfig
+
+echo_done
