@@ -5,16 +5,24 @@ green='\033[32m'
 reset='\033[0m'
 
 echo_doing () {
-  local text="# $1..."
-  echo " "
-  echo -e "${yellow}${text}${reset}"
-  echo " "
+ local text="$1"
+ local text_length=${#text}
+ local padding_length=$((text_length + 8)) 
+ local padding=$(printf '%*s' "$padding_length" | tr ' ' '#')
+
+ echo -e "${yellow}"
+ echo -e "${padding}"
+ echo -e "### $text ###"
+ echo -e "${padding}"
+ echo -e "${reset}"
 }
 
 echo_done () {
-  echo " "
-  echo -e "${green}# Done!${reset}"
-  echo " "
+  echo -e "${green}"
+  echo -e "############"
+  echo -e "### Done ###"
+  echo -e "############"
+  echo -e "${reset}"
 }
 
 reboot_prompt() {
