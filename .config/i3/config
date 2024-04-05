@@ -282,7 +282,8 @@ bindsym $mod+t exec rofi -show window \
 bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:rofi-power-menu \
 		-config ~/.config/rofi/rofidmenu.rasi
 
-bindsym $mod+p exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+p exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' \
+		-config ~/.config/rofi/rofidmenu.rasi
 
 #################################
 ### Monitor resolution config ###
