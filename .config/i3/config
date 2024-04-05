@@ -77,7 +77,7 @@ colors {
 #################
 
 # apps
-bindsym $mod+w exec --no-startup-id /usr/bin/brave
+bindsym $mod+w exec --no-startup-id flatpak run com.brave.Browser
 bindsym $mod+c exec --no-startup-id /usr/bin/code
 bindsym $mod+i exec --no-startup-id /usr/bin/idea
 bindsym $mod+shift+t exec --no-startup-id /usr/bin/qbittorrent
@@ -210,14 +210,14 @@ assign [class="Xfce4-terminal"] $ws1
 assign [class="Brave-browser"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="Code"] $ws4
-assign [class="Transmission-gtk"] $ws5
+assign [class="qBittorrent"] $ws5
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Xfce4-terminal] focus
 for_window [class=Brave-browser] focus
 for_window [class=Thunar] focus
 for_window [class=Code] focus
-for_window [class=Transmission-gtk] focus
+for_window [class=qBittorrent] focus
 
 # picom
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
@@ -281,6 +281,8 @@ bindsym $mod+t exec rofi -show window \
 
 bindsym $mod+Escape exec rofi -show power-menu -modi power-menu:rofi-power-menu \
 		-config ~/.config/rofi/rofidmenu.rasi
+
+bindsym $mod+p exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 #################################
 ### Monitor resolution config ###
